@@ -8,9 +8,13 @@ namespace Lab_number_7_Model
 {
     static class Program
     {
+
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
+        /// 
+
+        public static Modeling modeling;
         [STAThread]
         static void Main()
         {

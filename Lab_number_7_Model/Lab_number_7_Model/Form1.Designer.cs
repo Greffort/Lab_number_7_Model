@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.T_tb = new System.Windows.Forms.TextBox();
+            this.dT_tb = new System.Windows.Forms.TextBox();
+            this.N_tb = new System.Windows.Forms.TextBox();
+            this.K_tb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,65 +43,40 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.start_btn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // T_tb
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(11, 26);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(195, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Расчитать время моделирования";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.T_tb.Location = new System.Drawing.Point(11, 8);
+            this.T_tb.Name = "T_tb";
+            this.T_tb.Size = new System.Drawing.Size(100, 20);
+            this.T_tb.TabIndex = 2;
             // 
-            // radioButton2
+            // dT_tb
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(11, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(179, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Задать время моделирования";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.dT_tb.Location = new System.Drawing.Point(11, 35);
+            this.dT_tb.Name = "dT_tb";
+            this.dT_tb.Size = new System.Drawing.Size(100, 20);
+            this.dT_tb.TabIndex = 3;
             // 
-            // textBox1
+            // N_tb
             // 
-            this.textBox1.Location = new System.Drawing.Point(11, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.N_tb.Location = new System.Drawing.Point(11, 62);
+            this.N_tb.Name = "N_tb";
+            this.N_tb.Size = new System.Drawing.Size(100, 20);
+            this.N_tb.TabIndex = 4;
             // 
-            // textBox2
+            // K_tb
             // 
-            this.textBox2.Location = new System.Drawing.Point(11, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(11, 62);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 4;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(11, 89);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 5;
+            this.K_tb.Location = new System.Drawing.Point(11, 89);
+            this.K_tb.Name = "K_tb";
+            this.K_tb.Size = new System.Drawing.Size(100, 20);
+            this.K_tb.TabIndex = 5;
             // 
             // label1
             // 
@@ -204,19 +177,9 @@
             this.exitToolStripMenuItem.Text = "Выход";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(162, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 56);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Вести данные";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(312, 207);
+            this.button2.Location = new System.Drawing.Point(312, 168);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 56);
             this.button2.TabIndex = 15;
@@ -225,10 +188,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.T_tb);
+            this.panel1.Controls.Add(this.dT_tb);
+            this.panel1.Controls.Add(this.N_tb);
+            this.panel1.Controls.Add(this.K_tb);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
@@ -238,33 +201,23 @@
             this.panel1.Size = new System.Drawing.Size(443, 120);
             this.panel1.TabIndex = 16;
             // 
-            // panel2
+            // start_btn
             // 
-            this.panel2.Controls.Add(this.radioButton1);
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Location = new System.Drawing.Point(12, 153);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(443, 48);
-            this.panel2.TabIndex = 17;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(12, 207);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(144, 56);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Запуск";
-            this.button3.UseVisualStyleBackColor = true;
+            this.start_btn.Location = new System.Drawing.Point(12, 168);
+            this.start_btn.Name = "start_btn";
+            this.start_btn.Size = new System.Drawing.Size(144, 56);
+            this.start_btn.TabIndex = 18;
+            this.start_btn.Text = "Далее";
+            this.start_btn.UseVisualStyleBackColor = true;
+            this.start_btn.Click += new System.EventHandler(this.start_btn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(970, 537);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.start_btn);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox5);
@@ -279,21 +232,16 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox T_tb;
+        private System.Windows.Forms.TextBox dT_tb;
+        private System.Windows.Forms.TextBox N_tb;
+        private System.Windows.Forms.TextBox K_tb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -305,11 +253,9 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button start_btn;
     }
 }
 

@@ -22,3 +22,4 @@ C:\Users\sv\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_
 C:\Users\sv\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.Form4.resources
 C:\Users\sv\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.Properties.Resources.resources
 C:\Users\sv\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.csproj.GenerateResource.Cache
+C:\Users\sv\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.Form5.resources

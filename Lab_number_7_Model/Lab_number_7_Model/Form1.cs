@@ -87,5 +87,25 @@ RANDINT - Целое случайное число
         {
 
         }
+
+        private void start_btn_Click(object sender, EventArgs e)
+        {
+            if (T_tb.Text.Equals("") || dT_tb.Text.Equals("") || K_tb.Text.Equals("") || N_tb.Text.Equals (""))
+            {
+                MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                
+            }
+            else
+            {
+               
+                Program.modeling = new Modeling(Convert.ToInt32(N_tb.Text), Convert.ToDouble(T_tb.Text), Convert.ToDouble(dT_tb.Text), Convert.ToInt32(K_tb.Text));
+                Form2 f2 = new Form2(this);
+               
+                f2.Show();
+
+            }
+        }
+        
     }
 }
