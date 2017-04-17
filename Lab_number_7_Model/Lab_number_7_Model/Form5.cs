@@ -40,8 +40,12 @@ namespace Lab_number_7_Model
                 if (Double.TryParse(textBox1.Text,  out result))
                 {
                     Program.modeling.ScalingFactor = Double.Parse(textBox1.Text);
-                    Program.modeling.CalculationOfIncrementModelTime(progressBar1);
-                    
+                    Program.modeling.CalculationOfIncrementModelTime();
+                    this.Visible = false;
+                    ProcessForm pf = new ProcessForm(this);
+                    pf.Show();
+
+
                 }
                 else
                 {

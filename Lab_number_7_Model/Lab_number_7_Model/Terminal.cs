@@ -22,7 +22,6 @@ namespace Lab_number_7_Model
         public double dtobr { set; get; }
         public double to;
 
-        public int[] massindex;
 
 
         public void CalculationOfTp()

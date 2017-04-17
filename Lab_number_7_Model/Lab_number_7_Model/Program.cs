@@ -18,9 +18,28 @@ namespace Lab_number_7_Model
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+
+
+            //Picture first = new Picture();
+            //DateTime end = DateTime.Now + TimeSpan.FromSeconds(1.4);
+            //first.Show();
+
+            //while (end > DateTime.Now)
+            //{
+            //    Application.DoEvents();
+            //}
+            //first.Close();
+            //first.Dispose();
+
+
+
+            //Application.Run(new Form1());
+           Application.Run(new HelloMenuForm());
+           // Application.Run(new ProcessForm());
         }
     }
 }

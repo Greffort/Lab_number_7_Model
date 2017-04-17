@@ -103,5 +103,10 @@ namespace Lab_number_7_Model
             }
 
         }
+
+        private void late_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

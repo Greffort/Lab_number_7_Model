@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -47,6 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelloMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelloMenuForm.Designer.cs">
+      <DependentUpon>HelloMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,10 +96,34 @@
     <Compile Include="Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
+    <Compile Include="TESTMDIParent1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TESTMDIParent1.Designer.cs">
+      <DependentUpon>TESTMDIParent1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modeling.cs" />
+    <Compile Include="Picture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Picture.Designer.cs">
+      <DependentUpon>Picture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessForm.Designer.cs">
+      <DependentUpon>ProcessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Terminal.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelloMenuForm.resx">
+      <DependentUpon>HelloMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,15 +139,20 @@
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TESTMDIParent1.resx">
+      <DependentUpon>TESTMDIParent1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Picture.resx">
+      <DependentUpon>Picture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessForm.resx">
+      <DependentUpon>ProcessForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,6 +165,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Структурная схема1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.0-Logotip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Заголовок2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Заголовок.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Заголовок1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Структурная схема.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\2.0 - Logotip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Для логотипа 1.0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Для логотипа 2.0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\2.1 - Logotop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Заголовок.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Подпись 0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\AboutBox1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Document\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
