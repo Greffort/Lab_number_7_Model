@@ -4,9 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using static Lab_number_7_Model.Modeling;
 
 namespace Lab_number_7_Model
 {
@@ -15,6 +19,18 @@ namespace Lab_number_7_Model
         public Form1()
         {
             InitializeComponent();
+            this.tabControl1.Size = this.Size;
+            this.StructuralScheme.Width = this.Size.Width - 20;
+            this.panel5.Width = this.Size.Width - 10;
+            this.panel5.Height = this.Size.Height - 300;
+            this.StructuralScheme.Height = this.Size.Height - 300;
+            Point p = new Point();
+            p.X = StructuralScheme.Location.X + 400;
+            p.Y = panel6.Location.Y;
+            this.panel6.Location = p;
+
+
+            DeactivateControls();
         }
 
 
@@ -173,6 +189,8 @@ RANDINT - Целое случайное число
                     Program.modeling.InitializationOfdtpost(dTp);
                     ActivateControls(2);
                     tabControl1.SelectTab(2);
+
+                    if (dataGridView2.Rows.Count==0)
                     FillingDataGrid(dataGridView2);
                 }
 
@@ -221,7 +239,6 @@ RANDINT - Целое случайное число
                     Program.modeling.InitializationOfdtobr(dtobr);
                     ActivateControls(3);
                     tabControl1.SelectTab(3);
-
                     IsVisible();
                     IsVisible2();
                     sigma_tb.Enabled = false;
@@ -246,7 +263,7 @@ RANDINT - Целое случайное число
 
             if (!T_tb.Text.Equals("") && !K_tb.Text.Equals(""))
             {
-                if (Double.TryParse(T_tb.Text, out result)&& uint.TryParse(K_tb.Text, out res))
+                if (Double.TryParse(T_tb.Text, out result) && uint.TryParse(K_tb.Text, out res))
                 {
                     if (input_dT_rb.Checked)
                     {
@@ -298,13 +315,13 @@ RANDINT - Целое случайное число
                                         MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
                                 }
-                                
+
                             }
                             else
                             {
                                 MessageBox.Show("Некорректное введенное значение", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-                            
+
                         }
                         else
                         {
@@ -313,50 +330,83 @@ RANDINT - Целое случайное число
                     }
                     else
                     {
-                        //тоже
-                        if (input_rb.Checked)
+                        if (!tochnostK_tb.Text.Equals(""))
                         {
-                            if (!deltat_tb.Text.Equals(""))
+                            int ResultbyTochnost = 0;
+                            if (int.TryParse(tochnostK_tb.Text, out ResultbyTochnost))
                             {
-                                if (Double.TryParse(deltat_tb.Text, out result))
+
+                                //тоже
+                                if (input_rb.Checked)
                                 {
-                                    //cтарт3
-                                    Program.modeling.EnizializedForRun3(Convert.ToDouble(T_tb.Text), Convert.ToInt32(K_tb.Text), Convert.ToDouble(deltat_tb.Text));
-                                    ActivateControls(4);
-                                    tabControl1.SelectTab(4);
+                                    if (!deltat_tb.Text.Equals(""))
+                                    {
+                                        if (Double.TryParse(deltat_tb.Text, out result))
+                                        {
+                                            //cтарт3
+                                            if (canstart)
+                                            {
+                                                Program.modeling.EnizializedForRun3(Convert.ToDouble(T_tb.Text), Convert.ToInt32(K_tb.Text), Convert.ToDouble(deltat_tb.Text), Convert.ToInt32(tochnostK_tb.Text.Replace('.', ',')));
+                                                ActivateControls(4);
+                                                tabControl1.SelectTab(4);
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Неккоректное значение k", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Некорректное введенное значение", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Некорректное введенное значение", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    if (!sigma_tb.Text.Equals(""))
+                                    {
+                                        if (Double.TryParse(sigma_tb.Text, out result))
+                                        {
+                                            //старт4
+                                            if (canstart)
+                                            {
+                                                Program.modeling.EnizializedForRun4(Convert.ToDouble(T_tb.Text), Convert.ToInt32(K_tb.Text), Convert.ToDouble(sigma_tb.Text), Convert.ToInt32(tochnostK_tb.Text));
+                                                ActivateControls(4);
+                                                tabControl1.SelectTab(4);
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Неккоректное значение k", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Некорректное введенное значение", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Некорректное введенное значение", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            if (!sigma_tb.Text.Equals(""))
-                            {
-                                if (Double.TryParse(sigma_tb.Text, out result))
-                                {
-                                    //старт4
-                                    Program.modeling.EnizializedForRun4(Convert.ToDouble(T_tb.Text), Convert.ToInt32(K_tb.Text), Convert.ToDouble(sigma_tb.Text));
-                                    ActivateControls(4);
-                                    tabControl1.SelectTab(4);
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Некорректное введенное значение", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }
+
+                }
                 }
                 else
                 {
@@ -370,16 +420,53 @@ RANDINT - Целое случайное число
 
             if (tabControl1.SelectedIndex == 4)
             {
-                for (int i = 0; i < Program.modeling.N; i++)
+                if (!isModeling)
                 {
-                    comboBox1.Items.Add(i+1);
-                }
+                    for (int i = 0; i < Program.modeling.N; i++)
+                    {
+                        comboBox1.Items.Add("Терминал "+(i + 1).ToString());
+                        comboBox2.Items.Add("Терминал " + (i + 1).ToString());
+                    }
 
-                comboBox1.Items.Add("Показать все");
-                
-                //Program.modeling.GetInformation(this.dataGridView1,0);
-                StartModelling(dataGridView3);
-                comboBox1.SelectedIndex = Program.modeling.N;
+                    ActivateControls(5);
+                    comboBox1.Items.Add("Показать все");
+
+                    //Program.modeling.GetInformation(this.dataGridView1,0);
+                    StartModelling(dataGridView3);
+                    comboBox1.SelectedIndex = Program.modeling.N;
+                    dt_label.Text += " "+Program.modeling.deltat;
+                    dTlabel.Text += " "+Program.modeling.deltaT;
+                    dT_tb.Enabled = false;
+                    isModeling = true;
+                }
+                else
+                {
+                    dt_label.Text = "Δt = ";
+                    dTlabel.Text = "ΔT = ";
+                    dt_label.Text += Program.modeling.deltat;
+                    dTlabel.Text += Program.modeling.deltaT;
+                    dataGridView3.Rows.Clear();
+                    dataGridView4.Rows.Clear();
+                    comboBox2.Items.Clear();
+                    comboBox1.Items.Clear();
+
+                    
+                    for (int i = 0; i < chart1.Series.Count; i++)
+                    {
+                        chart1.Series[i].Points.Clear();
+                    }
+
+                    for (int i = 0; i < Program.modeling.N; i++)
+                    {
+                        comboBox1.Items.Add("Терминал " + (i + 1).ToString());
+                        comboBox2.Items.Add("Терминал " + (i + 1).ToString());
+                    }
+
+                    ActivateControls(5);
+                    comboBox1.Items.Add("Показать все");
+                    Program.modeling.ToRestart();
+                    StartModelling(dataGridView3);
+                }
             }
         }
 
@@ -410,18 +497,7 @@ RANDINT - Целое случайное число
             //this.panel6.Location = p;
 
 
-            this.tabControl1.Size = this.Size;
-            this.StructuralScheme.Width = this.Size.Width - 20;
-            this.panel5.Width = this.Size.Width - 10;
-            this.panel5.Height = this.Size.Height - 300;
-            this.StructuralScheme.Height = this.Size.Height - 300;
-            Point p = new Point();
-            p.X = StructuralScheme.Location.X + 400;
-            p.Y = panel6.Location.Y;
-            this.panel6.Location = p;
-
-            
-            DeactivateControls();
+           
 
         }
 
@@ -451,6 +527,7 @@ RANDINT - Целое случайное число
             ThirdTab();
         }
 
+        bool isModeling = false;
         private void run_btn_Click(object sender, EventArgs e)
         {
             ForthTab();
@@ -459,16 +536,17 @@ RANDINT - Целое случайное число
 
         private void late_btn_1_Click(object sender, EventArgs e)
         {
-
+            tabControl1.SelectTab(0);
         }
 
         private void late_btn_2_Click(object sender, EventArgs e)
         {
-
+            tabControl1.SelectTab(1);
         }
 
         private void restart_btn_Click(object sender, EventArgs e)
         {
+            
             DeactivateControls();
             ActivateControls(0);
             this.N_tb.Enabled = true;
@@ -476,6 +554,8 @@ RANDINT - Целое случайное число
             this.leave_btn.Enabled = true;
             ToNullPages();
             Program.modeling = null;
+            isModeling = false;
+            
         }
 
         public void ToNullPages()
@@ -487,15 +567,27 @@ RANDINT - Целое случайное число
             sigma_tb.Text = "";
             T_tb.Text = "";
 
+            dt_label.Text = "Δt =";
+            dTlabel.Text = "ΔT =";
+
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
             dataGridView3.Rows.Clear();
+            dataGridView4.Rows.Clear();
             IsVisible();
             IsVisible2();
             sigma_tb.Enabled = false;
             label4.Enabled = false;
             input_rb.Checked = true;
             input_dT_rb.Checked = true;
+            comboBox2.Items.Clear();
+            comboBox1.Items.Clear();
+
+            for (int i = 0; i < chart1.Series.Count; i++)
+            {
+                chart1.Series[i].Points.Clear();
+            }
+           
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -520,15 +612,40 @@ RANDINT - Целое случайное число
         {
             if (input_rb.Checked)
             {
-                deltat_tb.Enabled = true;
-                sigma_tb.Enabled = false;
-                label2.Enabled = false;
+                sigma_tb.Text = "";
+                dt_tp_4_label.Visible = false;
+                if (T_tb.Text.Equals(""))
+                {
+                    deltat_tb.Enabled = false;
+                    sigma_tb.Enabled = false;
+                    label4.Enabled = false;
+                }
+
+                else
+                {
+                    deltat_tb.Enabled = true;
+                    sigma_tb.Enabled = false;
+                    label4.Enabled = false;
+                }
             }
             else
             {
-                deltat_tb.Enabled = false;
-                sigma_tb.Enabled = true;
-                label2.Enabled = true;
+                dt_tp_4_label.Visible = true;
+
+                if (T_tb.Text.Equals(""))
+                {
+                    deltat_tb.Enabled = false;
+                    sigma_tb.Enabled = false;
+                    label4.Enabled = false;
+                }
+
+                else
+                {
+                    deltat_tb.Enabled = false;
+                    sigma_tb.Enabled = true;
+                    label4.Enabled = true;
+                }
+
             }
         }
 
@@ -536,11 +653,62 @@ RANDINT - Целое случайное число
         {
             if (input_dT_rb.Checked)
             {
-                dT_tb.Enabled = true;
+                canstart = true;
+                k_inform_label.Text = "Введите значение k в диапазоне от 1 до ";
+                tochnostK_tb.Text = "";
+                deltaT_tp_4_label.Visible = false;
+                if (T_tb.Text.Equals(""))
+                {
+                    dT_tb.Enabled = false;
+                    tochnostK_tb.Enabled = false;
+                    label8.Enabled = false;
+                    k_inform_label.Visible = false;
+                }
+                else
+                {
+                    //if (calc_dT_rb.Checked)
+                    //{
+                        dT_tb.Enabled = true;
+                        tochnostK_tb.Enabled = false;
+                        label8.Enabled = false;
+                        k_inform_label.Visible = false;
+
+                        //здесь добавляем коэффициент k
+
+                        //double T = double.Parse(T_tb.Text);
+                        //double dT = Program.modeling.CalculationOfIncrementdTT();
+                        //int kinf = (int)Math.Truncate(T / dT);
+
+                        //k_inform_label.Text += " " + kinf;
+                    //}
+
+                    
+                }
             }
             else
             {
-                dT_tb.Enabled = false;
+                deltaT_tp_4_label.Visible = true;
+                if (T_tb.Text.Equals(""))
+                {
+                    dT_tb.Enabled = false;
+                    tochnostK_tb.Enabled = false;
+                    label8.Enabled = false;
+                    k_inform_label.Visible = false;
+                }
+                else
+                {
+                    k_inform_label.Text = "Введите значение k в диапазоне от 1 до ";
+                    dT_tb.Enabled = false;
+                    tochnostK_tb.Enabled = true;
+                    label8.Enabled = true;
+                    k_inform_label.Visible = true;
+
+                    double T = double.Parse(T_tb.Text);
+                    double dT = Program.modeling.CalculationOfIncrementdTT();
+                    int kinf = (int)Math.Truncate(T / dT);
+
+                    k_inform_label.Text += " " + kinf;
+                }
             }
         }
 
@@ -573,7 +741,7 @@ RANDINT - Целое случайное число
             {
                 t.CalculationOfTp();
             }
-            double dt = Program.modeling.deltaT;
+            double dt = Program.modeling.deltaT; 
             while (Program.modeling.t <= Program.modeling.T)
             {
 
@@ -585,6 +753,7 @@ RANDINT - Целое случайное число
                 }
 
                 Program.modeling.t = Program.modeling.t + Program.modeling.deltat;
+               
                 Program.modeling.ReceiptOfBids();
                 
 
@@ -615,11 +784,16 @@ RANDINT - Целое случайное число
                 {
                     if (i == 0)
                     {
-                        dataGridView4.Rows.Add(comboBox1.SelectedIndex + 1, Program.modeling.reserved[comboBox1.SelectedIndex][i].deltaT, Program.modeling.reserved[comboBox1.SelectedIndex][i].S, Program.modeling.reserved[comboBox1.SelectedIndex][i].Q, Program.modeling.reserved[comboBox1.SelectedIndex][i].R);
+                        dataGridView4.Rows.Add(comboBox1.SelectedIndex + 1, Program.modeling.reserved[comboBox1.SelectedIndex][i].deltaT, Program.modeling.reserved[comboBox1.SelectedIndex][i].S, Program.modeling.reserved[comboBox1.SelectedIndex][i].Q, Program.modeling.reserved[comboBox1.SelectedIndex][i].R, Program.modeling.reserved[comboBox1.SelectedIndex][i].balance);
+                        if (Program.modeling.reserved[comboBox1.SelectedIndex][i].balance == 0) dataGridView4.Rows[i].Cells[5].Style.BackColor = Color.LightGreen;
+                        else dataGridView4.Rows[i].Cells[5].Style.BackColor = Color.IndianRed;
+
                     }
                     else
                     {
-                        dataGridView4.Rows.Add("", Program.modeling.reserved[comboBox1.SelectedIndex][i].deltaT, Program.modeling.reserved[comboBox1.SelectedIndex][i].S, Program.modeling.reserved[comboBox1.SelectedIndex][i].Q, Program.modeling.reserved[comboBox1.SelectedIndex][i].R);
+                        dataGridView4.Rows.Add("", Program.modeling.reserved[comboBox1.SelectedIndex][i].deltaT, Program.modeling.reserved[comboBox1.SelectedIndex][i].S, Program.modeling.reserved[comboBox1.SelectedIndex][i].Q, Program.modeling.reserved[comboBox1.SelectedIndex][i].R, Program.modeling.reserved[comboBox1.SelectedIndex][i].balance);
+                        if (Program.modeling.reserved[comboBox1.SelectedIndex][i].balance == 0) dataGridView4.Rows[i].Cells[5].Style.BackColor = Color.LightGreen;
+                        else dataGridView4.Rows[i].Cells[5].Style.BackColor = Color.IndianRed;
                     }
                 }
             }
@@ -628,6 +802,272 @@ RANDINT - Целое случайное число
                 dataGridView4.Visible = false;
             }
 
+        }
+
+        private void late_btn_3_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(2);
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
+            chart1.Series[2].Points.Clear();
+
+            chart1.ChartAreas[0].AxisX.Interval = Math.Truncate( Program.modeling.t / 10);
+
+
+            foreach (SQR sqr in Program.modeling.reserved[comboBox2.SelectedIndex])
+            {
+                chart1.Series[0].Points.AddXY(sqr.deltaT, sqr.S);
+                chart1.Series[1].Points.AddXY(sqr.deltaT,sqr.Q);
+                chart1.Series[2].Points.AddXY(sqr.deltaT, sqr.R);
+            }
+
+        }
+
+        private void k_inform_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void T_tb_TextChanged(object sender, EventArgs e)
+        {
+            IsVisible();
+            IsVisible2();
+            k_inform_label.Text = "Введите значение k в диапазоне от 1 до ";
+            if (calc_dT_rb.Checked)
+            {
+                try
+                {
+                    double T = double.Parse(T_tb.Text);
+
+
+                    double dT = Program.modeling.CalculationOfIncrementdTT();
+                    int kinf = (int)Math.Truncate(T / dT);
+
+                    k_inform_label.Text += " " + kinf;
+                }
+
+                catch
+                {
+                    k_inform_label.Text = "Введите значение k в диапазоне от 1 до ";
+                }
+            }
+        }
+
+        bool canstart = true;
+
+        private void tochnostK_tb_TextChanged(object sender, EventArgs e)
+        {
+            deltaT_tp_4_label.Text = "ΔT = ";
+            if (calc_dT_rb.Checked)
+            {
+                if (!tochnostK_tb.Text.Equals(""))
+                {
+                    double T = double.Parse(T_tb.Text);
+
+
+                    double dT = Program.modeling.CalculationOfIncrementdTT();
+
+                    if ((dT * Convert.ToDouble(tochnostK_tb.Text)) > Convert.ToDouble(T_tb.Text))
+                    {
+                        deltaT_tp_4_label.Text = "Значение k некорректно!";
+                        canstart = false;
+                    }
+                    else
+                    {
+                        deltaT_tp_4_label.Text += (dT * Convert.ToDouble(tochnostK_tb.Text)).ToString();
+                        canstart = true;
+                    }
+                    }
+                else
+                {
+                    deltaT_tp_4_label.Text = "ΔT = ";
+                }
+            }
+            else
+            {
+                deltaT_tp_4_label.Text = "ΔT = ";
+            }
+        }
+
+        private void dT_tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //регулярки
+        bool jh;
+        private void tochnostK_tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+                jh = true;
+            else jh = false;
+        }
+
+        private void tochnostK_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (jh == false)
+            {
+                string c = e.KeyChar.ToString();
+                if (Regex.Match(c, @"[\D]").Success)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void sigma_tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+                jh = true;
+            else jh = false;
+        }
+
+        
+        private void sigma_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && (ch != '.' || sigma_tb.Text.Contains(".")))
+            {
+                if (sigma_tb.Text.IndexOf('.')==0) sigma_tb.Text = "0"+sigma_tb.Text;
+                e.Handled = true;
+               
+            }
+        }
+
+        private void sigma_tb_Leave(object sender, EventArgs e)
+        {
+            if (sigma_tb.Text.IndexOf('.') == 0) sigma_tb.Text = "0" + sigma_tb.Text;
+        }
+
+        private void sigma_tb_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dt_tp_4_label.Text = "Δt = ";
+                if (calculate_rb.Checked)
+                {
+                    if (!sigma_tb.Text.Equals(""))
+                    {
+
+
+
+                        double dt = Program.modeling.CalculationOfIncrementdTT();
+
+
+                        dt_tp_4_label.Text += (Program.modeling.CalculationOfIncrementModelTime(Convert.ToDouble(sigma_tb.Text.Replace(".", ",")))).ToString();
+                    }
+                    else
+                    {
+                        dt_tp_4_label.Text = "Δt = ";
+                    }
+                }
+                else
+                {
+                    dt_tp_4_label.Text = "Δt = ";
+                }
+            }
+            catch { }
+        }
+
+        private void T_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && (ch != '.' || T_tb.Text.Contains(".")))
+            {
+                if (T_tb.Text.IndexOf('.') == 0) T_tb.Text = "0" + T_tb.Text;
+                e.Handled = true;
+
+            }
+        }
+
+        private void T_tb_Leave(object sender, EventArgs e)
+        {
+            if (T_tb.Text.IndexOf('.') == 0) T_tb.Text = "0" + T_tb.Text;
+        }
+
+        private void dT_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && (ch != '.' || dT_tb.Text.Contains(".")))
+            {
+                if (dT_tb.Text.IndexOf('.') == 0) dT_tb.Text = "0" + dT_tb.Text;
+                e.Handled = true;
+
+            }
+        }
+
+        private void dT_tb_Leave(object sender, EventArgs e)
+        {
+            if (dT_tb.Text.IndexOf('.') == 0) dT_tb.Text = "0" + dT_tb.Text;
+        }
+
+        private void deltat_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && (ch != '.' || deltat_tb.Text.Contains(".")))
+            {
+                if (deltat_tb.Text.IndexOf('.') == 0) deltat_tb.Text = "0" + deltat_tb.Text;
+                e.Handled = true;
+
+            }
+        }
+
+        private void deltat_tb_Leave(object sender, EventArgs e)
+        {
+            if (deltat_tb.Text.IndexOf('.') == 0) deltat_tb.Text = "0" + deltat_tb.Text;
+        }
+        //регулярка для K
+        private void K_tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+                jh = true;
+            else jh = false;
+        }
+
+        private void K_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (jh == false)
+            {
+                string c = e.KeyChar.ToString();
+                if (Regex.Match(c, @"[\D]").Success)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void tochnostK_tb_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void N_tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+                jh = true;
+            else jh = false;
+        }
+
+        private void N_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (jh == false)
+            {
+                string c = e.KeyChar.ToString();
+                if (Regex.Match(c, @"[\D]").Success)
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

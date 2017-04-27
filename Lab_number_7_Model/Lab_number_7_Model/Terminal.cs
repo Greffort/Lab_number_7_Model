@@ -22,6 +22,14 @@ namespace Lab_number_7_Model
         public double dtobr { set; get; }
         public double to;
 
+        public void ToRestartTerminal()
+        {
+            this.S = 0;
+            this.Q = 0;
+            this.R = 0;
+            this.P = 0;
+        }
+
 
 
         public void CalculationOfTp()

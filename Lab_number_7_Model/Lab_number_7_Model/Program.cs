@@ -24,21 +24,21 @@ namespace Lab_number_7_Model
 
 
 
-            //Picture first = new Picture();
-            //DateTime end = DateTime.Now + TimeSpan.FromSeconds(1.4);
-            //first.Show();
+            Picture first = new Picture();
+            DateTime end = DateTime.Now + TimeSpan.FromSeconds(3.4);
+            first.Show();
 
-            //while (end > DateTime.Now)
-            //{
-            //    Application.DoEvents();
-            //}
-            //first.Close();
-            //first.Dispose();
+            while (end > DateTime.Now)
+            {
+                Application.DoEvents();
+            }
+            first.Close();
+            first.Dispose();
 
 
 
             //Application.Run(new Form1());
-           Application.Run(new HelloMenuForm());
+            Application.Run(new HelloMenuForm());
            // Application.Run(new ProcessForm());
         }
     }

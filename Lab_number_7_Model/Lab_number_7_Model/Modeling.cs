@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +16,41 @@ namespace Lab_number_7_Model
             public int S;
             public int Q;
             public int R;
+            public int balance;
             public SQR(double dt, int S, int Q, int R)
             {
                 this.deltaT = dt;
                 this.S = S;
                 this.Q = Q;
                 this.R = R;
+                this.balance = S - Q - R;
             }
         }
 
-        
 
+        public void ToRestart()
+        {
+            foreach (Terminal t in this.terminals)
+            {
+                t.ToRestartTerminal();
+            }
+            this.F = -1;
+            this.t = 0;
+
+            this.massindex = new int[N];
+            for (int i = 0; i < N; i++)
+            {
+                massindex[i] = -1;
+
+            }
+            reserved.Clear();
+            for (int i = 0; i < N; i++)
+            {
+                reserved.Add(i, new List<SQR>());
+            }
+            this.k = 0;
+
+        }
         public List<Terminal> terminals;
         public Dictionary<int, List<SQR>> reserved = new Dictionary<int, List<SQR>>();
         public double t { get; set; }
@@ -37,6 +62,7 @@ namespace Lab_number_7_Model
         public double ScalingFactor { get; set; }
         public int F { get; set; }
         public int k { get; set; }
+        public int S { get; private set; }
 
         public int[] massindex;
 
@@ -92,21 +118,21 @@ namespace Lab_number_7_Model
             CalculationOfIncrementModelTime();
         }
 
-        public void EnizializedForRun3(double T, int K, double dt)
+        public void EnizializedForRun3(double T, int K, double dt, int tochnost)
         {
             this.T = T;
             this.K = K;
             this.deltat = dt;
-            CalculationOfIncrementdT();
+            CalculationOfIncrementdT(tochnost);
         }
 
-        public void EnizializedForRun4(double T, int K, double sigma)
+        public void EnizializedForRun4(double T, int K, double sigma, int tochnost)
         {
             this.T = T;
             this.K = K;
             this.ScalingFactor = sigma;
             CalculationOfIncrementModelTime();
-            CalculationOfIncrementdT();
+            CalculationOfIncrementdT(tochnost);
         }
 
 
@@ -172,22 +198,45 @@ namespace Lab_number_7_Model
                 if (minimum > this.terminals[i].Tobr - this.terminals[i].dtobr)
                     minimum = this.terminals[i].Tobr - this.terminals[i].dtobr;
 
+                if (minimum <= 0) minimum = 1;
+
                 this.deltat = minimum * this.ScalingFactor;
                 
             }
 
         }
 
+        public double CalculationOfIncrementModelTime(double scf)
+        {
+
+            double minimum = this.terminals[0].Tpost - this.terminals[0].dtpost;
+            for (int i = 0; i < N; i++)
+            {
+                if (minimum > this.terminals[i].Tpost - this.terminals[i].dtpost)
+                    minimum = this.terminals[i].Tpost - this.terminals[i].dtpost;
+
+                if (minimum > this.terminals[i].Tobr - this.terminals[i].dtobr)
+                    minimum = this.terminals[i].Tobr - this.terminals[i].dtobr;
+
+                if (minimum <= 0) minimum = 1;
+
+                this.deltat = minimum * scf;
+
+            }
+
+            return deltat;
+
+        }
         public void CalculationOfIncrementdT()
         {
             
             double maximum = this.terminals[0].Tpost + this.terminals[0].dtpost;
             for (int i = 0; i < N; i++)
             {
-                if (maximum > this.terminals[i].Tpost + this.terminals[i].dtpost)
+                if (maximum < this.terminals[i].Tpost + this.terminals[i].dtpost)
                     maximum = this.terminals[i].Tpost + this.terminals[i].dtpost;
 
-                if (maximum > this.terminals[i].Tobr + this.terminals[i].dtobr)
+                if (maximum < this.terminals[i].Tobr + this.terminals[i].dtobr)
                     maximum = this.terminals[i].Tobr + this.terminals[i].dtobr;
 
                 this.deltaT = maximum;
@@ -196,6 +245,40 @@ namespace Lab_number_7_Model
 
         }
 
+        public void CalculationOfIncrementdT(int tochnost)
+        {
+
+            double maximum = this.terminals[0].Tpost + this.terminals[0].dtpost;
+            for (int i = 0; i < N; i++)
+            {
+                if (maximum < this.terminals[i].Tpost + this.terminals[i].dtpost)
+                    maximum = this.terminals[i].Tpost + this.terminals[i].dtpost;
+
+                if (maximum < this.terminals[i].Tobr + this.terminals[i].dtobr)
+                    maximum = this.terminals[i].Tobr + this.terminals[i].dtobr;
+
+                this.deltaT = maximum*tochnost;
+
+            }
+
+        }
+        public double CalculationOfIncrementdTT()
+        {
+
+            double maximum = this.terminals[0].Tpost + this.terminals[0].dtpost;
+            for (int i = 0; i < N; i++)
+            {
+                if (maximum < this.terminals[i].Tpost + this.terminals[i].dtpost)
+                    maximum = this.terminals[i].Tpost + this.terminals[i].dtpost;
+
+                if (maximum < this.terminals[i].Tobr + this.terminals[i].dtobr)
+                    maximum = this.terminals[i].Tobr + this.terminals[i].dtobr;
+                //надо-не надо?
+                this.deltaT = maximum;
+                
+            }
+            return maximum;
+        }
         //проверка на конец
         public bool IsFinish()
         {
@@ -337,15 +420,22 @@ namespace Lab_number_7_Model
         {
             for (int i = 0; i < Program.modeling.N; i++)
             {
+                int balance = Program.modeling.terminals[i].S - Program.modeling.terminals[i].Q - Program.modeling.terminals[i].R;
                 reserved[i].Add(new SQR(dt, terminals[i].S, terminals[i].Q, terminals[i].R));
+
                 if (i == 0)
                 {
-                    dgv.Rows.Add(Program.modeling.deltaT, i + 1, Program.modeling.terminals[i].S, Program.modeling.terminals[i].Q, Program.modeling.terminals[i].R);
+                   
+                    dgv.Rows.Add(dt, i + 1, Program.modeling.terminals[i].S, Program.modeling.terminals[i].Q, Program.modeling.terminals[i].R, balance);
+                    if (balance == 0) dgv.Rows[dgv.Rows.Count-1].Cells[5].Style.BackColor = Color.LightGreen;
+                    else dgv.Rows[dgv.Rows.Count - 1].Cells[5].Style.BackColor = Color.IndianRed;
 
                 }
                 else
                 {
-                    dgv.Rows.Add("", i + 1, Program.modeling.terminals[i].S, Program.modeling.terminals[i].Q, Program.modeling.terminals[i].R);
+                    dgv.Rows.Add("", i + 1, Program.modeling.terminals[i].S, Program.modeling.terminals[i].Q, Program.modeling.terminals[i].R, balance);
+                    if (balance == 0) dgv.Rows[dgv.Rows.Count - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                    else dgv.Rows[dgv.Rows.Count - 1].Cells[5].Style.BackColor = Color.IndianRed;
                 }
 
             }

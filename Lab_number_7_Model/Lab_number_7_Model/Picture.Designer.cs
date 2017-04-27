@@ -43,9 +43,9 @@
             // 
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::Lab_number_7_Model.Properties.Resources.Для_логотипа_21;
-            this.pictureBox1.Location = new System.Drawing.Point(19, 330);
+            this.pictureBox1.Location = new System.Drawing.Point(-12, 308);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(285, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(345, 225);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
