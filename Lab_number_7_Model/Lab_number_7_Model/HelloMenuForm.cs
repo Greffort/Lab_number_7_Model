@@ -16,8 +16,14 @@ namespace Lab_number_7_Model
         public HelloMenuForm()
         {
             InitializeComponent();
-            
 
+            button1.BackColor = Color.LightBlue;//начать моделирование
+            button2.BackColor = Color.AliceBlue;//on
+            button3.BackColor = Color.AliceBlue;//o программе
+            button4.BackColor = Color.AliceBlue;//on
+            button5.BackColor = SystemColors.Control;//off
+            button6.BackColor = SystemColors.Control;//off
+            
         }
 
         //кнопка Выполнение расчетов или запуск модели
@@ -28,30 +34,28 @@ namespace Lab_number_7_Model
         }
 
         //дата и время
-        private void HelloMenuForm_Load(object sender, EventArgs e)
-        {
-            this.linkLabel1.Text = DateTime.Now.ToShortTimeString();
-            this.linkLabel2.Text = DateTime.Now.ToShortDateString();
-        }
+        //private void HelloMenuForm_Load(object sender, EventArgs e)
+        //{
+        //    this.linkLabel1.Text = DateTime.Now.ToShortTimeString();
+        //    this.linkLabel2.Text = DateTime.Now.ToShortDateString();
+        //}
 
         //вывод основной части реферата и заключения
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                richTextBox1.LoadFile(@"C:\Users\mvideo\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_Model\HelloMenuFormButton2.rtf"/*, RichTextBoxStreamType.PlainText*/);
+                richTextBox1.LoadFile(@"HelloMenuFormButton2.rtf");
                 button2.Visible = false;
                 button5.Visible = true;
 
                 button4.Visible = true;
                 button6.Visible = false;
-
             }
             catch
             {
                 richTextBox1.Text = "Неправильно указан путь к файлу";
             }
-
         }
 
         //отчитстка richtextbox той же кнопкой
@@ -75,7 +79,7 @@ namespace Lab_number_7_Model
         {
             try
             {
-                richTextBox1.LoadFile(@"C:\Users\mvideo\Desktop\Якимов-прожект\Lab_number_7_Model\Lab_number_7_Model\HelloMenuFormButtonСхемыИАлгоритм.rtf"/*, RichTextBoxStreamType.PlainText*/);
+                richTextBox1.LoadFile(@"HelloMenuFormButtonСхемыИАлгоритм.rtf");
                 button4.Visible = false;
                 button6.Visible = true;
 

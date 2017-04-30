@@ -21,11 +21,10 @@ namespace Lab_number_7_Model
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
-
+            
+# region Работа с PictureForm
             Picture first = new Picture();
-            DateTime end = DateTime.Now + TimeSpan.FromSeconds(3.4);
+            DateTime end = DateTime.Now + TimeSpan.FromSeconds(0);
             first.Show();
 
             while (end > DateTime.Now)
@@ -34,12 +33,11 @@ namespace Lab_number_7_Model
             }
             first.Close();
             first.Dispose();
+            #endregion
 
-
-
+            //вызов первой формы
             //Application.Run(new Form1());
             Application.Run(new HelloMenuForm());
-           // Application.Run(new ProcessForm());
         }
     }
 }

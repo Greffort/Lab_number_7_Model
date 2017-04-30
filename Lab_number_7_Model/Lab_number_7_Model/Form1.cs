@@ -30,84 +30,21 @@ namespace Lab_number_7_Model
             this.panel6.Location = p;
 
 
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+
+
             DeactivateControls();
         }
-
-
-        //стрипменю
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(@"       Вы уверенны, что хотите выйти?",
-      "Lab #7", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation,
-        MessageBoxDefaultButton.Button2);
-            switch (result)
-            {
-                case DialogResult.Yes:
-                    {
-                        Application.Exit();
-                        break;
-                    }
-                case DialogResult.No:
-                    {
-                        break;
-                    }
-                case DialogResult.Cancel:
-                    {
-                        break;
-                    }
-            }
-
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(@" 
-T - Модельное время
-Δt - Приращение модельного времени
-T - Время проведения исследования
-ΔТ - Период отображения информации о состоянии системы
-N - Количество терминалов
-S[N] - Количество заявок, пришедших на терминал
-Q[N] - Количество заявок в очереди терминала
-R[N] - Количество обработанных заявок каждого терминала
-F - Флаг занятости ЭВМ
-P[N] - Наличие задержки у терминала
-Tп[N] - Среднее время поступления заявок на терминал
-Δtп[N] - Вероятное отклонение поступления заявки
-tпост[N] - Время поступления заявки
-ΔTобр[N] - Среднее время обработки заявки с терминала
-Δtобр[N] - Вероятное отклонение обработки заявки с терминала
-Tобр[N] - Время обработки заявки
-K - Крайняя граница диапазона для выбора окна задержки
-Tзад [N] - Время задержки
-massindex[N] - Массив индексов терминалов, попавших в конфликт
-RAND - Случайное число с плавающей точкой
-RANDINT - Целое случайное число
-",
-      "Information Lab #7", MessageBoxButtons.OK, MessageBoxIcon.Information,
-        MessageBoxDefaultButton.Button1);
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void start_btn_Click(object sender, EventArgs e)
         {
-            //запаганил метод ниже, пусть будет, удалю
             if (N_tb.Text.Equals (""))
             {
                 MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //TESTMDIParent1 s = new TESTMDIParent1();
-                //s.Show();
-                
             }
 
             else
             {
                 //делаем все элементы вкладки "Терминалы" неактивными, кроме кнопки Перезагрузка
-
                 leave_btn.Enabled = false;
                 start_btn.Enabled = false;
                 N_tb.Enabled = false;
@@ -118,7 +55,6 @@ RANDINT - Целое случайное число
                 ActivateControls(1);
                 //переход во вторую вкладку
                 FillingDataGrid(dataGridView1);
-
             }
         }
 
@@ -152,7 +88,6 @@ RANDINT - Целое случайное число
 
         private void SecondTab()
         {
-          
             bool correct = true;
             if (IsFull(dataGridView1))
             {
@@ -184,7 +119,6 @@ RANDINT - Целое случайное число
                 }
                 if (correct)
                 {
-
                     Program.modeling.InitializationOfTpost(Tp);
                     Program.modeling.InitializationOfdtpost(dTp);
                     ActivateControls(2);
@@ -193,7 +127,6 @@ RANDINT - Целое случайное число
                     if (dataGridView2.Rows.Count==0)
                     FillingDataGrid(dataGridView2);
                 }
-
             }
 
             else
@@ -246,8 +179,6 @@ RANDINT - Целое случайное число
                     input_rb.Checked = true;
                     input_dT_rb.Checked = true;
                 }
-
-              
             }
 
             else
@@ -278,7 +209,6 @@ RANDINT - Целое случайное число
                                     {
                                         if (Double.TryParse(deltat_tb.Text, out result))
                                         {
-
                                             //cтарт1
                                             Program.modeling.EnizializedForRun1(Convert.ToDouble(T_tb.Text), Convert.ToInt32(K_tb.Text), Convert.ToDouble(dT_tb.Text), Convert.ToDouble(deltat_tb.Text));
                                             ActivateControls(4);
@@ -335,7 +265,6 @@ RANDINT - Целое случайное число
                             int ResultbyTochnost = 0;
                             if (int.TryParse(tochnostK_tb.Text, out ResultbyTochnost))
                             {
-
                                 //тоже
                                 if (input_rb.Checked)
                                 {
@@ -353,7 +282,6 @@ RANDINT - Целое случайное число
                                             else
                                             {
                                                 MessageBox.Show("Неккоректное значение k", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                                             }
                                         }
                                         else
@@ -382,7 +310,6 @@ RANDINT - Целое случайное число
                                             else
                                             {
                                                 MessageBox.Show("Неккоректное значение k", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                                             }
                                         }
                                         else
@@ -405,7 +332,6 @@ RANDINT - Целое случайное число
                         {
                             MessageBox.Show("Заполните все поля.", "Ошибка заполнения полей ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
                 }
                 }
                 else
@@ -495,10 +421,6 @@ RANDINT - Целое случайное число
             //p.X = StructuralScheme.Location.X+400;
             //p.Y = panel6.Location.Y;
             //this.panel6.Location = p;
-
-
-           
-
         }
 
         private void DeactivateControls()
@@ -532,8 +454,7 @@ RANDINT - Целое случайное число
         {
             ForthTab();
         }
-
-
+        
         private void late_btn_1_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(0);
@@ -546,7 +467,6 @@ RANDINT - Целое случайное число
 
         private void restart_btn_Click(object sender, EventArgs e)
         {
-            
             DeactivateControls();
             ActivateControls(0);
             this.N_tb.Enabled = true;
@@ -555,7 +475,6 @@ RANDINT - Целое случайное число
             ToNullPages();
             Program.modeling = null;
             isModeling = false;
-            
         }
 
         public void ToNullPages()
@@ -587,7 +506,6 @@ RANDINT - Целое случайное число
             {
                 chart1.Series[i].Points.Clear();
             }
-           
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -605,7 +523,6 @@ RANDINT - Целое случайное число
             p.X = this.Size.Width/2-265 ;
             p.Y = panel6.Location.Y;
             this.panel6.Location = p;
-            
         }
 
         private void IsVisible()
@@ -614,13 +531,13 @@ RANDINT - Целое случайное число
             {
                 sigma_tb.Text = "";
                 dt_tp_4_label.Visible = false;
+
                 if (T_tb.Text.Equals(""))
                 {
                     deltat_tb.Enabled = false;
                     sigma_tb.Enabled = false;
                     label4.Enabled = false;
                 }
-
                 else
                 {
                     deltat_tb.Enabled = true;
@@ -645,7 +562,6 @@ RANDINT - Целое случайное число
                     sigma_tb.Enabled = true;
                     label4.Enabled = true;
                 }
-
             }
         }
 
@@ -681,8 +597,6 @@ RANDINT - Целое случайное число
 
                         //k_inform_label.Text += " " + kinf;
                     //}
-
-                    
                 }
             }
             else
@@ -756,7 +670,6 @@ RANDINT - Целое случайное число
                
                 Program.modeling.ReceiptOfBids();
                 
-
                 if (Program.modeling.ISEmployed())
                 {
                     Program.modeling.PackageTreatment();
@@ -787,7 +700,6 @@ RANDINT - Целое случайное число
                         dataGridView4.Rows.Add(comboBox1.SelectedIndex + 1, Program.modeling.reserved[comboBox1.SelectedIndex][i].deltaT, Program.modeling.reserved[comboBox1.SelectedIndex][i].S, Program.modeling.reserved[comboBox1.SelectedIndex][i].Q, Program.modeling.reserved[comboBox1.SelectedIndex][i].R, Program.modeling.reserved[comboBox1.SelectedIndex][i].balance);
                         if (Program.modeling.reserved[comboBox1.SelectedIndex][i].balance == 0) dataGridView4.Rows[i].Cells[5].Style.BackColor = Color.LightGreen;
                         else dataGridView4.Rows[i].Cells[5].Style.BackColor = Color.IndianRed;
-
                     }
                     else
                     {
@@ -801,7 +713,6 @@ RANDINT - Целое случайное число
             {
                 dataGridView4.Visible = false;
             }
-
         }
 
         private void late_btn_3_Click(object sender, EventArgs e)
@@ -809,10 +720,7 @@ RANDINT - Целое случайное число
             tabControl1.SelectTab(2);
         }
 
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void tabPage4_Click(object sender, EventArgs e){}
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -821,21 +729,16 @@ RANDINT - Целое случайное число
             chart1.Series[2].Points.Clear();
 
             chart1.ChartAreas[0].AxisX.Interval = Math.Truncate( Program.modeling.t / 10);
-
-
+            
             foreach (SQR sqr in Program.modeling.reserved[comboBox2.SelectedIndex])
             {
                 chart1.Series[0].Points.AddXY(sqr.deltaT, sqr.S);
                 chart1.Series[1].Points.AddXY(sqr.deltaT,sqr.Q);
                 chart1.Series[2].Points.AddXY(sqr.deltaT, sqr.R);
             }
-
         }
 
-        private void k_inform_label_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void k_inform_label_Click(object sender, EventArgs e){}
 
         private void T_tb_TextChanged(object sender, EventArgs e)
         {
@@ -847,14 +750,12 @@ RANDINT - Целое случайное число
                 try
                 {
                     double T = double.Parse(T_tb.Text);
-
-
+                    
                     double dT = Program.modeling.CalculationOfIncrementdTT();
                     int kinf = (int)Math.Truncate(T / dT);
 
                     k_inform_label.Text += " " + kinf;
                 }
-
                 catch
                 {
                     k_inform_label.Text = "Введите значение k в диапазоне от 1 до ";
@@ -872,8 +773,7 @@ RANDINT - Целое случайное число
                 if (!tochnostK_tb.Text.Equals(""))
                 {
                     double T = double.Parse(T_tb.Text);
-
-
+                    
                     double dT = Program.modeling.CalculationOfIncrementdTT();
 
                     if ((dT * Convert.ToDouble(tochnostK_tb.Text)) > Convert.ToDouble(T_tb.Text))
@@ -886,7 +786,7 @@ RANDINT - Целое случайное число
                         deltaT_tp_4_label.Text += (dT * Convert.ToDouble(tochnostK_tb.Text)).ToString();
                         canstart = true;
                     }
-                    }
+                }
                 else
                 {
                     deltaT_tp_4_label.Text = "ΔT = ";
@@ -898,10 +798,7 @@ RANDINT - Целое случайное число
             }
         }
 
-        private void dT_tb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void dT_tb_TextChanged(object sender, EventArgs e){}
 
         //регулярки
         bool jh;
@@ -934,13 +831,11 @@ RANDINT - Целое случайное число
         
         private void sigma_tb_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             char ch = e.KeyChar;
             if (!Char.IsDigit(ch) && ch != 8 && (ch != '.' || sigma_tb.Text.Contains(".")))
             {
                 if (sigma_tb.Text.IndexOf('.')==0) sigma_tb.Text = "0"+sigma_tb.Text;
                 e.Handled = true;
-               
             }
         }
 
@@ -958,12 +853,8 @@ RANDINT - Целое случайное число
                 {
                     if (!sigma_tb.Text.Equals(""))
                     {
-
-
-
                         double dt = Program.modeling.CalculationOfIncrementdTT();
-
-
+                        
                         dt_tp_4_label.Text += (Program.modeling.CalculationOfIncrementModelTime(Convert.ToDouble(sigma_tb.Text.Replace(".", ",")))).ToString();
                     }
                     else
@@ -986,7 +877,6 @@ RANDINT - Целое случайное число
             {
                 if (T_tb.Text.IndexOf('.') == 0) T_tb.Text = "0" + T_tb.Text;
                 e.Handled = true;
-
             }
         }
 
@@ -1002,7 +892,6 @@ RANDINT - Целое случайное число
             {
                 if (dT_tb.Text.IndexOf('.') == 0) dT_tb.Text = "0" + dT_tb.Text;
                 e.Handled = true;
-
             }
         }
 
@@ -1018,7 +907,6 @@ RANDINT - Целое случайное число
             {
                 if (deltat_tb.Text.IndexOf('.') == 0) deltat_tb.Text = "0" + deltat_tb.Text;
                 e.Handled = true;
-
             }
         }
 
@@ -1046,10 +934,7 @@ RANDINT - Целое случайное число
             }
         }
 
-        private void tochnostK_tb_Leave(object sender, EventArgs e)
-        {
-
-        }
+        private void tochnostK_tb_Leave(object sender, EventArgs e){}
 
         private void N_tb_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1068,6 +953,22 @@ RANDINT - Целое случайное число
                     e.Handled = true;
                 }
             }
+        }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.Graphics.SetClip(e.Bounds);
+            string text = tabControl1.TabPages[e.Index].Text;
+            SizeF sz = e.Graphics.MeasureString(text, e.Font);
+
+            bool bSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+            using (SolidBrush b = new SolidBrush(bSelected ? Color.LightSkyBlue : SystemColors.Control))e.Graphics.FillRectangle(b, e.Bounds);
+
+            using (SolidBrush b = new SolidBrush(bSelected ? SystemColors.ControlText : SystemColors.ControlText)) e.Graphics.DrawString(text, e.Font, b, e.Bounds.X + 2, e.Bounds.Y + (e.Bounds.Height - sz.Height) / 2);
+
+            if (tabControl1.SelectedIndex == e.Index) { e.DrawFocusRectangle(); }
+
+            e.Graphics.ResetClip();
         }
     }
 }

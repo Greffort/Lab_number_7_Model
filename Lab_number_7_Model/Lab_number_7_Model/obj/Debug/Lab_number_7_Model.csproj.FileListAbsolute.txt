@@ -18,3 +18,17 @@ C:\Users\sv\Desktop\ДЯЛ ЯИКИ\Lab_number_7_Model\Lab_number_7_Model\obj\De
 C:\Users\sv\Desktop\ДЯЛ ЯИКИ\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.csproj.GenerateResource.Cache
 C:\Users\sv\Desktop\ДЯЛ ЯИКИ\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.exe
 C:\Users\sv\Desktop\ДЯЛ ЯИКИ\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.pdb
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\bin\Debug\Lab_number_7_Model.exe.config
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\bin\Debug\Lab_number_7_Model.exe
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\bin\Debug\Lab_number_7_Model.pdb
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\bin\Debug\Microsoft.VisualStudio.DebuggerVisualizers.dll
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\bin\Debug\ru\Microsoft.VisualStudio.DebuggerVisualizers.resources.dll
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.AboutBox1.resources
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.HelloMenuForm.resources
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.Form1.resources
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.Picture.resources
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.Properties.Resources.resources
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.csproj.GenerateResource.Cache
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.exe
+C:\Users\Александр\Desktop\Lab_number_7_Model-master\Lab_number_7_Model\Lab_number_7_Model\obj\Debug\Lab_number_7_Model.pdb

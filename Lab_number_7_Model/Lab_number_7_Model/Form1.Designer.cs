@@ -30,14 +30,14 @@ namespace Lab_number_7_Model
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title10 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -45,10 +45,8 @@ namespace Lab_number_7_Model
             this.panel1 = new System.Windows.Forms.Panel();
             this.N_tb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.restart_btn = new System.Windows.Forms.Button();
             this.leave_btn = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.StructuralScheme = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.late_btn_1 = new System.Windows.Forms.Button();
             this.next_btn_1 = new System.Windows.Forms.Button();
@@ -118,12 +116,13 @@ namespace Lab_number_7_Model
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.restart_btn = new System.Windows.Forms.Button();
+            this.StructuralScheme = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StructuralScheme)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -144,6 +143,7 @@ namespace Lab_number_7_Model
             this.tabPage6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StructuralScheme)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -156,6 +156,7 @@ namespace Lab_number_7_Model
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.HotTrack = true;
+            this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.ItemSize = new System.Drawing.Size(120, 25);
             this.tabControl1.Location = new System.Drawing.Point(0, -1);
             this.tabControl1.Multiline = true;
@@ -164,6 +165,7 @@ namespace Lab_number_7_Model
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(890, 594);
             this.tabControl1.TabIndex = 20;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // tabPage1
             // 
@@ -230,17 +232,6 @@ namespace Lab_number_7_Model
             this.label3.TabIndex = 8;
             this.label3.Text = "Количество терминалов (N)";
             // 
-            // restart_btn
-            // 
-            this.restart_btn.BackColor = System.Drawing.Color.LightGreen;
-            this.restart_btn.Image = ((System.Drawing.Image)(resources.GetObject("restart_btn.Image")));
-            this.restart_btn.Location = new System.Drawing.Point(473, 3);
-            this.restart_btn.Name = "restart_btn";
-            this.restart_btn.Size = new System.Drawing.Size(80, 65);
-            this.restart_btn.TabIndex = 20;
-            this.restart_btn.UseVisualStyleBackColor = false;
-            this.restart_btn.Click += new System.EventHandler(this.restart_btn_Click);
-            // 
             // leave_btn
             // 
             this.leave_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
@@ -260,17 +251,6 @@ namespace Lab_number_7_Model
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1019, 362);
             this.panel5.TabIndex = 21;
-            // 
-            // StructuralScheme
-            // 
-            this.StructuralScheme.BackColor = System.Drawing.Color.White;
-            this.StructuralScheme.Image = ((System.Drawing.Image)(resources.GetObject("StructuralScheme.Image")));
-            this.StructuralScheme.Location = new System.Drawing.Point(0, 0);
-            this.StructuralScheme.Name = "StructuralScheme";
-            this.StructuralScheme.Size = new System.Drawing.Size(895, 354);
-            this.StructuralScheme.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.StructuralScheme.TabIndex = 19;
-            this.StructuralScheme.TabStop = false;
             // 
             // tabPage2
             // 
@@ -947,7 +927,7 @@ namespace Lab_number_7_Model
             this.groupBox4.BackColor = System.Drawing.Color.Cornsilk;
             this.groupBox4.Controls.Add(this.comboBox2);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox4.Location = new System.Drawing.Point(827, 34);
+            this.groupBox4.Location = new System.Drawing.Point(610, 99);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(178, 78);
             this.groupBox4.TabIndex = 6;
@@ -966,41 +946,63 @@ namespace Lab_number_7_Model
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart1.Legends.Add(legend5);
             this.chart1.Location = new System.Drawing.Point(0, 23);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "S - пришло";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Q - в очереди";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "R - обработано";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series13.Legend = "Legend1";
+            series13.Name = "S - пришло";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series14.Legend = "Legend1";
+            series14.Name = "Q - в очереди";
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series15.Legend = "Legend1";
+            series15.Name = "R - обработано";
+            this.chart1.Series.Add(series13);
+            this.chart1.Series.Add(series14);
+            this.chart1.Series.Add(series15);
             this.chart1.Size = new System.Drawing.Size(755, 451);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            title1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            title1.Font = new System.Drawing.Font("Arial Unicode MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "t - приращение модельного времени";
-            title2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
-            title2.Font = new System.Drawing.Font("Arial Unicode MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Title2";
-            title2.Text = "Кол-во заявок";
-            this.chart1.Titles.Add(title1);
-            this.chart1.Titles.Add(title2);
+            title9.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title9.Font = new System.Drawing.Font("Arial Unicode MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title9.Name = "Title1";
+            title9.Text = "t - приращение модельного времени";
+            title10.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            title10.Font = new System.Drawing.Font("Arial Unicode MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title10.Name = "Title2";
+            title10.Text = "Кол-во заявок";
+            this.chart1.Titles.Add(title9);
+            this.chart1.Titles.Add(title10);
+            // 
+            // restart_btn
+            // 
+            this.restart_btn.BackColor = System.Drawing.Color.LightGreen;
+            this.restart_btn.Image = ((System.Drawing.Image)(resources.GetObject("restart_btn.Image")));
+            this.restart_btn.Location = new System.Drawing.Point(473, 3);
+            this.restart_btn.Name = "restart_btn";
+            this.restart_btn.Size = new System.Drawing.Size(80, 65);
+            this.restart_btn.TabIndex = 20;
+            this.restart_btn.UseVisualStyleBackColor = false;
+            this.restart_btn.Click += new System.EventHandler(this.restart_btn_Click);
+            // 
+            // StructuralScheme
+            // 
+            this.StructuralScheme.BackColor = System.Drawing.Color.White;
+            this.StructuralScheme.Image = ((System.Drawing.Image)(resources.GetObject("StructuralScheme.Image")));
+            this.StructuralScheme.Location = new System.Drawing.Point(0, 0);
+            this.StructuralScheme.Name = "StructuralScheme";
+            this.StructuralScheme.Size = new System.Drawing.Size(895, 354);
+            this.StructuralScheme.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.StructuralScheme.TabIndex = 19;
+            this.StructuralScheme.TabStop = false;
             // 
             // Form1
             // 
@@ -1024,7 +1026,6 @@ namespace Lab_number_7_Model
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.StructuralScheme)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1056,6 +1057,7 @@ namespace Lab_number_7_Model
             this.tabPage6.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StructuralScheme)).EndInit();
             this.ResumeLayout(false);
 
         }

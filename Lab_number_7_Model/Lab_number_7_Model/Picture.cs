@@ -17,26 +17,14 @@ namespace Lab_number_7_Model
         {
             InitializeComponent();
             timer1.Start();
-            //this.FormBorderStyle = FormBorderStyle.None;
-            //this.AllowTransparency = true;
-            //this.BackColor = Color.AliceBlue;//цвет фона  
-            //this.TransparencyKey = this.BackColor;//он же будет заменен на прозрачный цвет
         }
-
-
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //Thread.Sleep(1);
-            //timer1.Stop();
-            this.Opacity += 0.2;
-
+            this.Opacity += 0.4;
             if (this.Opacity == 1) { timer1.Stop(); }
         }
 
-        private void Picture_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Picture_Load(object sender, EventArgs e){}
     }
 }
